@@ -66,13 +66,13 @@ class PageFormOrderScooter // Страница формы заказа Для к
     {
         driver.findElement(addressField).sendKeys(address);
     }
-        public void metroStation()// Метод производит Скрол и клик по Станции Метро
-        {
+    public void metroStation()// Метод производит Скрол и клик по Станции Метро
+    {
         driver.findElement(metroStationField).click();
         WebElement element = driver.findElement(clickMetroStation);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(clickMetroStation).click();
-        }
+    }
     public void setTelephone(String telephone)// Метод заполняет поле Телефон
     {
        driver.findElement(telephoneField).sendKeys(telephone);
