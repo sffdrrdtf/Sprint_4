@@ -1,27 +1,27 @@
 package PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.WebElement;
 public class HomePage //Начальная страница
 {
     private final WebDriver driver;
-    private final By firstButtonOrder = By.className("Button_Button__ra12g"); // Локатор кнопки заказа
-    private final By buttonCookies = By.id("rcc-confirm-button"); // Локатор кнопки cookie
+    // Локатор 2 кнопок заказа, вверху и в низу главной страницы
+    private final By clickTwoButtonsOrder = By.xpath("//button[text()='Заказать']");
     public HomePage(WebDriver driver)
     {
         this.driver = driver;
     }
-    public void clickFirstButtonOrder()// Метод нажатия на кнопку Заказать
+    // Метод нажатия на кнопки Заказать по их индексу расположения
+    public void clickButtonsOrder(int clickBtn)
     {
-        driver.findElement(firstButtonOrder).click();
+        WebElement elementScrollToBtn = driver.findElement(clickTwoButtonsOrder);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", elementScrollToBtn);
+        driver.findElement(clickTwoButtonsOrder).click();
     }
-    public void clickButtonCookies()// Метод нажатия на кнопку cookie
+    // Метод передаваемый в тестовый класс OrderScooterTests
+    public void page(int clickBtn)
     {
-        driver.findElement(buttonCookies).click();
-    }
-    public void page()// Метод передаваемый в тестовый класс practicum
-    {
-        clickFirstButtonOrder();
-        clickButtonCookies();
+        clickButtonsOrder(clickBtn);
     }
 }

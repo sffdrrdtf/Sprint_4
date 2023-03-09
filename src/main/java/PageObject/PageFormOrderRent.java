@@ -62,7 +62,7 @@ public class PageFormOrderRent
         return driver.findElement(messageOrder).isDisplayed();
 
     }
-    public void formRent(String comment)// Метод передаваемый в тестовый класс practicum
+    public void formRent(String comment)// Метод передаваемый в тестовый класс OrderScooterTests
     {
         choiceDate();
         choiceTimeDuration();

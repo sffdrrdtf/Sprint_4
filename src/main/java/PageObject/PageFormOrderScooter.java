@@ -53,7 +53,7 @@ public class PageFormOrderScooter // Страница формы заказа Д
     {
         driver.findElement(buttonFurther).click();
     }
-    // Метод передаваемый в тестовый класс practicum
+    // Метод передаваемый в тестовый класс OrderScooterTests
     public void formScooter(String name, String surname, String address, String telephone){
         setName(name);
         setSurname(surname);
