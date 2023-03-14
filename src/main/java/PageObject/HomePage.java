@@ -3,6 +3,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import java.util.List;
+
 public class HomePage //Начальная страница
 {
     private final WebDriver driver;
@@ -17,7 +19,8 @@ public class HomePage //Начальная страница
     {
         WebElement elementScrollToBtn = driver.findElement(clickTwoButtonsOrder);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", elementScrollToBtn);
-        driver.findElement(clickTwoButtonsOrder).click();
+        List<WebElement> elementsVClickTwoBtn = driver.findElements(clickTwoButtonsOrder);
+        elementsVClickTwoBtn.get(clickBtn).click();
     }
     // Метод передаваемый в тестовый класс OrderScooterTests
     public void page(int clickBtn)

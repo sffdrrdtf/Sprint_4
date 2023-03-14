@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class OrderScooterTests {
+public class OrderScooterTest {
     private WebDriver driver;
     private final String name;
     private final String surname;
@@ -19,7 +19,7 @@ public class OrderScooterTests {
     private final String comment;
     private final int clickBtn;
 
-    public OrderScooterTests( int clickBtn, String name, String surname, String address, String telephone, String comment)
+    public OrderScooterTest( int clickBtn, String name, String surname, String address, String telephone, String comment)
     {
         this.clickBtn = clickBtn;
         this.name = name;
@@ -37,21 +37,19 @@ public class OrderScooterTests {
                         {1,"Виктор", "Иванов", "Яровая 40", "+79998887766", "Добрый день, будьте добры, привезите самокат после 3"}
                 };
     }
-       @Before
-      public void setup(){
-          driver = new ChromeDriver();
-          driver.navigate().to("https://qa-scooter.praktikum-services.ru/");
-      }
+    @Before
+    public void setup(){
+        driver = new ChromeDriver();
+        driver.navigate().to("https://qa-scooter.praktikum-services.ru/");
+    }
     @Test
     public void ordersTest() {
         //Создаем объект главной страницы
         driver.findElement(By.id("rcc-confirm-button")).click();
-        //driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[4]/div[2]/div[5]/button")).click();
         HomePage objHomePage = new HomePage(driver);
         // Метод кликает по кнопкам Заказать и cookie
         objHomePage.page(clickBtn);
         //Создаем объект страницы Для кого Скутер?
-        //driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[4]/div[2]/div[5]/button")).click();
         PageFormOrderScooter objPageFormOrderScooter = new PageFormOrderScooter(driver);
         // Метод заполнения полей name, surname, address, telephone, metroStation.
         objPageFormOrderScooter.formScooter( name,  surname,  address, telephone);
@@ -65,9 +63,6 @@ public class OrderScooterTests {
     @After
     public void closePage()
     {
-       driver.quit();
+        driver.quit();
     }
 }
-
-
-

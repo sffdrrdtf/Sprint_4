@@ -23,35 +23,28 @@ public class CheckMessage {
         WebElement element = driver.findElement(collectMessage);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
+
     //Метод клика на кнопку вопроса по его индексу
-    public void allClickBtnTextsQuestion(int textQuestion) {
+    public void allClickBtnTextsQuestion(int clickTextQuestion) {
         List<WebElement> elementsVClickTexts = driver.findElements(allClickBtnText);
-        elementsVClickTexts.get(0).click();
-        elementsVClickTexts.get(1).click();
-        elementsVClickTexts.get(2).click();
-        elementsVClickTexts.get(3).click();
-        elementsVClickTexts.get(4).click();
-        elementsVClickTexts.get(5).click();
-        elementsVClickTexts.get(6).click();
-        elementsVClickTexts.get(7).click();
+        elementsVClickTexts.get(clickTextQuestion).click();
+    }
+    //Метод получения текста по его индексу
+    public void allGetTextsQuestion(int actualGetText) {
+        List<WebElement> elementsVClickTexts = driver.findElements(getTexts);
+        elementsVClickTexts.get(actualGetText).getText();
+    }
+    //Метод получения текста по его индексу для проверки как ожидаемый результат
+    public void allGetTextsQuestion1(int expectedGetText) {
+        List<WebElement> elementsVClickTexts = driver.findElements(getTexts);
+        elementsVClickTexts.get(expectedGetText).getText();
     }
     // Метод передаваемый в тестовый класс "Test"
-    public void allText(int textQuestion) {
+    public void allText(int clickTextQuestion, int actualGetText, int expectedGetText) {
         scrollCollectMessages();
-        allClickBtnTextsQuestion(textQuestion);
-    }
-    //Метод получения текста ответа на вопрос по его индексу
-    public boolean checkAllMessagesGetText()
-    {
-        List<WebElement> elements = driver.findElements(getTexts);
-        for(WebElement element:elements)
-        {
-           var text = element.getText();
-           if(text == null && text.isEmpty())
-           {
-               return false;
-           }
-        }
-        return true;
+        allClickBtnTextsQuestion(clickTextQuestion);
+        allGetTextsQuestion(actualGetText);
+        allGetTextsQuestion1(expectedGetText);
     }
 }
+
