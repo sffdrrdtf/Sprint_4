@@ -24,45 +24,52 @@ public class PageFormOrderRent
     //Локатор клика кнопки Да
     private final By buttonYes = By.xpath("/html/body/div/div/div[2]/div[5]/div[2]/button[2]");
     //Локатор сообщения об успешном оформлении заказа
-    private final By messageOrder = By.xpath("/html/body/div/div/div[2]/div[5]");
+    private final By messageOrder = By.xpath("//*[@id=\"root\"]/div/div[2]/div[5]/div[1]/text()");
     public PageFormOrderRent(WebDriver driver)
     {
         this.driver = driver;
     }
-    public void choiceDate() //Метод кликает по полю Дата
+    //Метод кликает по полю Дата
+    public void choiceDate()
     {
         driver.findElement(dateField).click();
         driver.findElement(clickDate).click();
     }
-    public void choiceTimeDuration() //Метод производит Скрол и клик по полю Срок аренды
+    //Метод производит Скрол и клик по полю Срок аренды
+    public void choiceTimeDuration()
     {
         driver.findElement(timeDuration).click();
         WebElement elementTimeRent = driver.findElement(clickTimeDuration);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", elementTimeRent);
         driver.findElement(clickTimeDuration).click();
     }
-    public void choiceCommentField()//Метод кликает по чекбоксу Цвет самоката
+    //Метод кликает по чекбоксу Цвет самоката
+    public void choiceCommentField()
     {
         driver.findElement(scooterColour).click();
     }
-    public void setComment(String comment)//Метод заполняет поле Комментарий
+    //Метод заполняет поле Комментарий
+    public void setComment(String comment)
     {
         driver.findElement(commentField).sendKeys(comment);
     }
-    public void clickButtonOrder()//Метод кликает по кнопке Заказать
+    //Метод кликает по кнопке Заказать
+    public void clickButtonOrder()
     {
         driver.findElement(secondButtonOrder).click();
     }
-    public void clickButtonYes()//Метод кликает по кнопке Да
+    //Метод кликает по кнопке Да
+    public void clickButtonYes()
     {
         driver.findElement(buttonYes).click();
     }
-    public boolean isMessageOrderVisible()//Метод проверяет видимость сообщения об успешном оформлении заказа
+    //Метод проверяет видимость сообщения об успешном оформлении заказа
+   public boolean isMessageOrderVisible()
     {
-        return driver.findElement(messageOrder).isDisplayed();
-
+       return driver.findElement(messageOrder).isDisplayed();
     }
-    public void formRent(String comment)// Метод передаваемый в тестовый класс OrderScooterTests
+    // Метод передаваемый в тестовый класс OrderScooterTests
+    public void formRent(String comment)
     {
         choiceDate();
         choiceTimeDuration();

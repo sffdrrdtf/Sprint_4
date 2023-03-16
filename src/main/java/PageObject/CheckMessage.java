@@ -5,22 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 public class CheckMessage {
     private final WebDriver driver;
-    //Локатор текстов Ответов на вопросы
-    private final By accordionQuestButton = By.className("accordion__button");
+    //Локатор локатор блока вопросов
+    private final By blockQuestButton = By.xpath("//*[@id=\"root\"]/div/div/div[5]/div[2]/div");
     public CheckMessage(WebDriver driver) {
         this.driver = driver;
     }
+    //Метод скрола кнопок блока с вопросами "Вопросы о главном"
+    public void scrollToBlockQuestButton() {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
+                driver.findElement(blockQuestButton));
+    }
     //Метод клика на кнопку вопроса и получения текста
     public String getAnswerToFAQ(int numAnswer) {
-        WebElement Quest = driver.findElement(By.id("accordion__heading-" + numAnswer));
-        Quest.click();
+        WebElement quest = driver.findElement(By.id("accordion__heading-" + numAnswer));
+        quest.click();
         WebElement textAnswer = driver.findElement(By.id("accordion__panel-" + numAnswer));
         return textAnswer.getText();
-    }
-    //Метод скрола кнопок блока с вопросами "Вопросы о главном"
-    public By getAccordionQuestButton() {
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
-                driver.findElement(By.className("accordion__button")));
-        return accordionQuestButton;
     }
 }

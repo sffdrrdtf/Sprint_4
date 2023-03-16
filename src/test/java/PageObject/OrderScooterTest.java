@@ -48,7 +48,7 @@ public class OrderScooterTest {
         driver.findElement(By.id("rcc-confirm-button")).click();
         HomePage objHomePage = new HomePage(driver);
         // Метод кликает по кнопкам Заказать и cookie
-        objHomePage.page(clickBtn);
+        objHomePage.clickButtonsOrder(clickBtn);
         //Создаем объект страницы Для кого Скутер?
         PageFormOrderScooter objPageFormOrderScooter = new PageFormOrderScooter(driver);
         // Метод заполнения полей name, surname, address, telephone, metroStation.

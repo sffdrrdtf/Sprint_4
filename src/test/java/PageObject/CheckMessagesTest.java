@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.List;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
@@ -55,10 +55,8 @@ public class CheckMessagesTest {
         driver.findElement(By.id("rcc-confirm-button")).click();
         //Создаем объект класса CheckMessage который кликает по очереди на кнопку вопроса и получает текст
         CheckMessage objCheckMessage = new CheckMessage(driver);
-        List<WebElement> items = driver.findElements(objCheckMessage.getAccordionQuestButton());
-        for (WebElement item : items) {
+        objCheckMessage.scrollToBlockQuestButton();
             assertEquals(answer, objCheckMessage.getAnswerToFAQ(numOfQuest));
-        }
     }
     @After
     public void closePage() {
