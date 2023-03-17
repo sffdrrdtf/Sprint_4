@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class OrderScooterTest {
@@ -18,8 +18,9 @@ public class OrderScooterTest {
     private final String telephone;
     private final String comment;
     private final int clickBtn;
+    private final boolean result;
 
-    public OrderScooterTest( int clickBtn, String name, String surname, String address, String telephone, String comment)
+    public OrderScooterTest( int clickBtn, String name, String surname, String address, String telephone, String comment,boolean result)
     {
         this.clickBtn = clickBtn;
         this.name = name;
@@ -27,14 +28,15 @@ public class OrderScooterTest {
         this.address = address;
         this.telephone = telephone;
         this.comment = comment;
+        this.result=result;
     }
     @Parameterized.Parameters
     public static Object[][] getOrders()
     {
         return new Object[][]
                 {
-                        {0,"Сергей", "Бунитруль", "Сосновая 2", "+79998887766", "Не звонить, ребенок спит"},
-                        {1,"Виктор", "Иванов", "Яровая 40", "+79998887766", "Добрый день, будьте добры, привезите самокат после 3"}
+                        {0,"Сергей", "Бунитруль", "Сосновая 2", "+79998887766", "Не звонить, ребенок спит", true},
+                        {1,"Виктор", "Иванов", "Яровая 40", "+79998887766", "Добрый день, будьте добры, привезите самокат после 3", true}
                 };
     }
     @Before
@@ -58,7 +60,7 @@ public class OrderScooterTest {
         //Метод заполнения полей страницы Про Аренду
         objPageFormOrderRent.formRent(comment);
         // Производит проверку видимости сообщения об успешном заказе
-        assertTrue(objPageFormOrderRent.isMessageOrderVisible());
+        assertEquals(result,objPageFormOrderRent.isMessageOrderVisible());
     }
     @After
     public void closePage()

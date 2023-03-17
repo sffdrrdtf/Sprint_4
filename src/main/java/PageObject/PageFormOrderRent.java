@@ -24,7 +24,7 @@ public class PageFormOrderRent
     //Локатор клика кнопки Да
     private final By buttonYes = By.xpath("/html/body/div/div/div[2]/div[5]/div[2]/button[2]");
     //Локатор сообщения об успешном оформлении заказа
-    private final By messageOrder = By.xpath("//*[@id=\"root\"]/div/div[2]/div[5]/div[1]/text()");
+    private final By messageOrder = By.xpath("//div[text()='Заказ оформлен']");
     public PageFormOrderRent(WebDriver driver)
     {
         this.driver = driver;
